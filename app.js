@@ -33,12 +33,12 @@ app.post('/login', (req, res) => {
     console.log(`password: ${password}`)
     console.log(`query: ${query}`)
 
+
     db.get(query, function (err, row) {
         if (err) {
             console.log('ERROR', err);
             res.redirect('/index.html#error');
         } else if (!row) {
-            console.log('unauthorized')
             res.redirect('index.html#unauthorized');
         } else {
             res.send('Hello <b>' + row.title + '!</b><br />This file contains all your secret data: <br /><br />SECRETS <br /><br /> MORE SECRETS <br /><br /><a href="/index.html">Go back to login</a>');
